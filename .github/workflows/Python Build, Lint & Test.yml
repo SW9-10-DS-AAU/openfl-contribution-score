@@ -2,7 +2,7 @@ name: Python Build, Lint & Test
 
 on:
   pull_request:
-    branches: [casparemiljensen-patch-1]
+    branches: [main]
 
 
 jobs:
@@ -13,8 +13,8 @@ jobs:
     steps:
       - id: check
         run: |
-          if [ "${{ github.head_ref }}" != "caspartest" ]; then
-            echo "PR must come from 'caspartest' branch!"
+          if [ "${{ github.head_ref }}" != "develop" ]; then
+            echo "PR must come from 'develop' branch!"
             exit 1
           fi
           echo "allowed=true" >> $GITHUB_OUTPUT
