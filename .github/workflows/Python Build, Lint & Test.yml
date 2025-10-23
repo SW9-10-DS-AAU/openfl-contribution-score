@@ -13,8 +13,8 @@ jobs:
     steps:
       - id: check
         run: |
-          if [ "${{ github.head_ref }}" != "caspartest-1" ]; then
-            echo "PR must come from 'caspartest-1' branch!"
+          if [ "${{ github.head_ref }}" != "caspartest" ]; then
+            echo "PR must come from 'caspartest' branch!"
             exit 1
           fi
           echo "allowed=true" >> $GITHUB_OUTPUT
