@@ -1,13 +1,26 @@
 name: Python Build, Lint & Test
 
 on:
-  push:
-    branches: [casparemiljensen-patch-1]
   pull_request:
-    branches: [casparemiljensen-patch-1]
+    branches: [main]
+
 
 jobs:
+  enforce-source-branch:
+    runs-on: ubuntu-latest
+    outputs:
+      allowed: ${{ steps.check.outputs.allowed }}
+    steps:
+      - id: check
+        run: |
+          if [ "${{ github.head_ref }}" != "develop" ]; then
+            echo "PR must come from 'develop' branch!"
+            exit 1
+          fi
+          echo "allowed=true" >> $GITHUB_OUTPUT
+
   build:
+    needs: enforce-source-branch
     runs-on: ubuntu-latest
 
     steps:
